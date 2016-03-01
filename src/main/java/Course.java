@@ -3,6 +3,19 @@ import java.util.ArrayList;
 import org.sql2o.*;
 
 public class Course {
+  @Override
+  public boolean equals(Object otherCourse) {
+    if(!(otherCourse instanceof Course)) {
+      return false;
+    } else {
+      Course newCourse = (Course) otherCourse;
+        return this.getCourse().equals(newCourse.getCourse())
+              && this.getProfessor().equals(newCourse.getProfessor())
+              && this.getId() == newCourse.getId()
+              && this.getCompleted() == newCourse.getCompleted();
+    }
+}
+
   private int id;
   private String course;
   private String professor;

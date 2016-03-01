@@ -5,6 +5,18 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 public class Student {
+  @Override
+  public boolean equals(Object otherStudent) {
+    if(!(otherStudent instanceof Student)) {
+      return false;
+    } else {
+      Student newStudent = (Student) otherStudent;
+        return this.getName().equals(newStudent.getName())
+              && this.getDepartment().equals(newStudent.getDepartment())
+              && this.getId() == newStudent.getId();
+        }
+  }
+
   private int id;
   private String name;
   private LocalDateTime date_registered;

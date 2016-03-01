@@ -13,4 +13,10 @@ public class StudentTest {
     assertEquals(Student.all().size(), 0);
   }
 
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Student firstStudent = new Student("Bob", "Herbology");
+    Student secondStudent = new Student("Bob", "Herbology");
+    assertTrue(firstStudent.equals(secondStudent));
+  }
 }

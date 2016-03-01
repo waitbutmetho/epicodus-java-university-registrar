@@ -13,12 +13,12 @@ public class CourseTest {
     assertEquals(Course.all().size(), 0);
   }
 //
-//   @Test
-//   public void equals_returnsTrueIfNamesAretheSame() {
-//     Category firstCategory = new Category("Household chores");
-//     Category secondCategory = new Category("Household chores");
-//     assertTrue(firstCategory.equals(secondCategory));
-//   }
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Course firstCourse = new Course("Smoking 101", "Snoop Dogg");
+    Course secondCourse = new Course("Smoking 101", "Snoop Dogg");
+    assertTrue(firstCourse.equals(secondCourse));
+  }
 //
 //   @Test
 //   public void save_savesIntoDatabase_true() {
