@@ -19,14 +19,14 @@ public class Student {
 
   private int id;
   private String name;
-  private LocalDateTime date_registered;
+  private String date_registered;
   private String department;
 
 
 public Student(String name, String department) {
   this.id = id;
   this.name = name;
-  this.date_registered = LocalDateTime.now();
+  this.date_registered = LocalDateTime.now().toString();
   this.department = department;
 }
 
@@ -42,7 +42,7 @@ public String getDepartment() {
   return department;
 }
 
-public LocalDateTime getTimeRegistered() {
+public String getTimeRegistered() {
     return date_registered;
   }
 
@@ -50,6 +50,19 @@ public static List<Student> all() {
   String sql = "SELECT id, name, date_registered, department FROM students;";
   try (Connection con = DB.sql2o.open()) {
     return con.createQuery(sql).executeAndFetch(Student.class);
+  }
+}
+
+public void save() {
+  String sql = "INSERT INTO students (id, name, date_registered, department) VALUES (:id, :name, :date_registered, :department);";
+  try (Connection con = DB.sql2o.open()) {
+    this.id = (int) con.createQuery(sql, true)
+      .addParameter("id", id)
+      .addParameter("name", name)
+      .addParameter("date_registered", date_registered)
+      .addParameter("department", department)
+      .executeUpdate()
+      .getKey();
   }
 }
 }

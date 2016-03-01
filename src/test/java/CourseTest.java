@@ -20,12 +20,12 @@ public class CourseTest {
     assertTrue(firstCourse.equals(secondCourse));
   }
 //
-//   @Test
-//   public void save_savesIntoDatabase_true() {
-//     Category myCategory = new Category("Household chores");
-//     myCategory.save();
-//     assertTrue(Category.all().get(0).equals(myCategory));
-//   }
+  @Test
+  public void save_savesIntoDatabase_true() {
+    Course myCourse = new Course("Smoking 101", "Snoop Dogg");
+    myCourse.save();
+    assertTrue(Course.all().get(0).equals(myCourse));
+  }
 //
 //   @Test
 //   public void find_findCategoryInDatabase_true() {

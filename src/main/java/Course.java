@@ -51,4 +51,17 @@ public static List<Course> all() {
     return con.createQuery(sql).executeAndFetch(Course.class);
   }
 }
+
+public void save() {
+  String sql = "INSERT INTO courses (id, course, professor, iscompleted) VALUES (:id, :course, :professor, :iscompleted);";
+  try (Connection con = DB.sql2o.open()) {
+    this.id = (int) con.createQuery(sql, true)
+      .addParameter("id", id)
+      .addParameter("course", course)
+      .addParameter("professor", professor)
+      .addParameter("iscompleted", iscompleted)
+      .executeUpdate()
+      .getKey();
+  }
+}
 }
