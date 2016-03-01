@@ -65,4 +65,14 @@ public void save() {
       .getKey();
   }
 }
+
+  public static Student find(int id) {
+    String sql = "SELECT id, name, date_registered, department FROM students where id=:id;";
+    try (Connection con = DB.sql2o.open()) {
+      Student student = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Student.class);
+        return student;
+    }
+  }
 }

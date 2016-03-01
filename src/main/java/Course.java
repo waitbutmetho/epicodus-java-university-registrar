@@ -64,4 +64,14 @@ public void save() {
       .getKey();
   }
 }
+
+public static Course find(int id) {
+  String sql = "SELECT id, course, professor, iscompleted FROM courses where id=:id;";
+  try (Connection con = DB.sql2o.open()) {
+    Course course = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Course.class);
+      return course;
+  }
+}
 }

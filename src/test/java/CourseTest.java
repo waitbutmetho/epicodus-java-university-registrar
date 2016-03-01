@@ -26,14 +26,14 @@ public class CourseTest {
     myCourse.save();
     assertTrue(Course.all().get(0).equals(myCourse));
   }
-//
-//   @Test
-//   public void find_findCategoryInDatabase_true() {
-//     Category myCategory = new Category("Household chores");
-//     myCategory.save();
-//     Category savedCategory = Category.find(myCategory.getId());
-//     assertTrue(myCategory.equals(savedCategory));
-//   }
+
+  @Test
+  public void find_findCourseInDatabase_true() {
+    Course myCourse = new Course("Smoking 101", "Snoop Dogg");
+    myCourse.save();
+    Course savedCourse = Course.find(myCourse.getId());
+    assertTrue(myCourse.equals(savedCourse));
+  }
 //
 //   @Test
 //   public void addTask_addsTaskToCategory() {

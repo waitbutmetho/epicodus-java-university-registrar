@@ -15,15 +15,23 @@ public class StudentTest {
 
   @Test
   public void equals_returnsTrueIfNamesAretheSame() {
-    Student firstStudent = new Student("Bob", "Herbology");
-    Student secondStudent = new Student("Bob", "Herbology");
+    Student firstStudent = new Student("Roach", "Herbology");
+    Student secondStudent = new Student("Roach", "Herbology");
     assertTrue(firstStudent.equals(secondStudent));
   }
 
   @Test
   public void save_savesIntoDatabase_true() {
-    Student myStudent = new Student("Bob", "Herbology");
+    Student myStudent = new Student("Roach", "Herbology");
     myStudent.save();
     assertTrue(Student.all().get(0).equals(myStudent));
+  }
+
+  @Test
+  public void find_findStudentInDatabase_true() {
+    Student myStudent = new Student("Roach", "Herbology");
+    myStudent.save();
+    Student savedStudent = Student.find(myStudent.getId());
+    assertTrue(myStudent.equals(savedStudent));
   }
 }
