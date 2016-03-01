@@ -1,0 +1,18 @@
+categories.vtl
+
+<h1>Categories list!</h1>
+
+<h3>Add a new category:</h3>
+
+<form action="/categories" method="post">
+  <label for="name">Category Name</label>
+  <input id="name" name="name" type="text">
+
+  <button class="btn btn-default" type="submit">Add category</button>
+</form>
+
+#foreach ($category in $categories)
+  <li><a class="btn btn-primary" href="/categories/$category.getId()">$category.getName()</a></li>
+#end
+<br>
+<p><a class="btn btn-info" href='/'>Home</a></p>
