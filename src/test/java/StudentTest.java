@@ -42,4 +42,30 @@ public class StudentTest {
     newStudent.updateDepartment("industrial agriculture");
     assertEquals("industrial agriculture", newStudent.getDepartment());
   }
+
+  @Test
+  public void addCourse_addsCourseToStudent() {
+    Student myStudent = new Student("Roach", "Herbology");
+    myStudent.save();
+
+    Course myCourse = new Course("Smoking 101", "Snoop Dogg");
+    myCourse.save();
+
+    myStudent.addCourse(myCourse);
+    Course savedCourse = myStudent.getCourses().get(0);
+    assertTrue(myCourse.equals(savedCourse));
+}
+
+  @Test
+  public void getCourses_returnsAllCourses_ArrayList() {
+    Student myStudent = new Student("Roach", "Herbology");
+    myStudent.save();
+
+    Course myCourse = new Course("Smoking 101", "Snoop Dogg");
+    myCourse.save();
+
+    myStudent.addCourse(myCourse);
+    List savedCourses = myStudent.getCourses();
+    assertEquals(savedCourses.size(), 1);
+  }
 }

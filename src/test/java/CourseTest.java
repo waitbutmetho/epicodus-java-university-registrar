@@ -36,37 +36,38 @@ public class CourseTest {
   }
 
   @Test
-  public void updateProf_replacesOldValueAndReturnsNewValue() {
+  public void updateProfessor_replacesOldValueAndReturnsNewValue() {
     Course newCourse = new Course("Smoking 101", "Snoop Dogg");
     newCourse.save();
-    newCourse.updateProf("Doug Benson");
+    newCourse.updateProfessor("Doug Benson");
     assertEquals("Doug Benson", newCourse.getProfessor());
   }
-//   @Test
-//   public void addTask_addsTaskToCategory() {
-//     Category myCategory = new Category("Household chores");
-//     myCategory.save();
-//
-//     Task myTask = new Task("Mow the lawn", false);
-//     myTask.save();
-//
-//     myCategory.addTask(myTask);
-//     Task savedTask = myCategory.getTasks().get(0);
-//     assertTrue(myTask.equals(savedTask));
-// }
-//
-//   @Test
-//   public void getTasks_returnsAllTasks_ArrayList() {
-//     Category myCategory = new Category("Household chores");
-//     myCategory.save();
-//
-//     Task myTask = new Task("Mow the lawn", false);
-//     myTask.save();
-//
-//     myCategory.addTask(myTask);
-//     List savedTasks = myCategory.getTasks();
-//     assertEquals(savedTasks.size(), 1);
-// }
+
+  @Test
+  public void addStudent_addsStudentToCourse() {
+    Course myCourse = new Course("Smoking 101", "Snoop Dogg");
+    myCourse.save();
+
+    Student myStudent = new Student("Roach", "Herbology");
+    myStudent.save();
+
+    myCourse.addStudent(myStudent);
+    Student savedStudent = myCourse.getStudents().get(0);
+    assertTrue(myStudent.equals(savedStudent));
+}
+
+  @Test
+  public void getStudents_returnsAllStudents_ArrayList() {
+    Course myCourse = new Course("Smoking 101", "Snoop Dogg");
+    myCourse.save();
+
+    Student myStudent = new Student("Roach", "Herbology");
+    myStudent.save();
+
+    myCourse.addStudent(myStudent);
+    List savedStudents = myCourse.getStudents();
+    assertEquals(savedStudents.size(), 1);
+}
 //
 //   @Test
 //   public void delete_deletesAllTasksAndListsAssoicationes() {

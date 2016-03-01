@@ -75,8 +75,8 @@ public static Course find(int id) {
   }
 }
 
-public void updateProf(String newProf) {
-  this.professor = newProf;
+public void updateProfessor(String newProfesspr) {
+  this.professor = newProfesspr;
   String sql = "UPDATE courses SET  professor=:professor WHERE id=:id;";
   try (Connection con = DB.sql2o.open()) {
     this.id = (int) con.createQuery(sql, true)
@@ -85,5 +85,24 @@ public void updateProf(String newProf) {
       .executeUpdate()
       .getKey();
   }
+}
+
+public void addStudent(Student student) {
+  String sql = "INSERT INTO students_courses (student_id, course_id) VALUES (:student_id, :course_id);";
+  try (Connection con = DB.sql2o.open()) {
+    con.createQuery(sql)
+      .addParameter("student_id", student.getId())
+      .addParameter("course_id", this.getId())
+      .executeUpdate();
+  }
+}
+
+public List<Student> getStudents() {
+String sql = "SELECT students.* FROM courses JOIN students_courses ON (courses.id = students_courses.course_id) JOIN students ON (students_courses.student_id = students.id) WHERE courses.id =:course_id;";
+try(Connection con = DB.sql2o.open()) {
+    return con.createQuery(sql)
+    .addParameter("course_id", this.getId())
+    .executeAndFetch(Student.class);
+}
 }
 }

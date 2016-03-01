@@ -87,4 +87,23 @@ public void save() {
         .getKey();
     }
   }
+
+  public void addCourse(Course course) {
+    String sql = "INSERT INTO students_courses (student_id, course_id) VALUES (:student_id, :course_id);";
+    try ( Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("student_id", this.getId())
+        .addParameter("course_id", course.getId())
+        .executeUpdate();
+    }
+  }
+
+  public List<Course> getCourses() {
+    String sql = "SELECT courses.* FROM students JOIN students_courses ON (students.id = students_courses.student_id) JOIN courses ON (students_courses.course_id = courses.id) WHERE students.id=:student_id;";
+      try(Connection con = DB.sql2o.open()) {
+          return con.createQuery(sql)
+          .addParameter("student_id", this.getId())
+          .executeAndFetch(Course.class);
+      }
+  }
 }
