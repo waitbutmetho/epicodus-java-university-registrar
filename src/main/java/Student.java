@@ -75,4 +75,16 @@ public void save() {
         return student;
     }
   }
+
+  public void updateDepartment(String newDepartment) {
+    this.department = newDepartment;
+    String sql = "UPDATE students SET  department=:department WHERE id=:id;";
+    try (Connection con = DB.sql2o.open()) {
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("department", department)
+        .addParameter("id", id)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }

@@ -74,4 +74,16 @@ public static Course find(int id) {
       return course;
   }
 }
+
+public void updateProf(String newProf) {
+  this.professor = newProf;
+  String sql = "UPDATE courses SET  professor=:professor WHERE id=:id;";
+  try (Connection con = DB.sql2o.open()) {
+    this.id = (int) con.createQuery(sql, true)
+      .addParameter("professor", professor)
+      .addParameter("id", id)
+      .executeUpdate()
+      .getKey();
+  }
+}
 }

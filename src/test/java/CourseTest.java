@@ -34,7 +34,14 @@ public class CourseTest {
     Course savedCourse = Course.find(myCourse.getId());
     assertTrue(myCourse.equals(savedCourse));
   }
-//
+
+  @Test
+  public void updateProf_replacesOldValueAndReturnsNewValue() {
+    Course newCourse = new Course("Smoking 101", "Snoop Dogg");
+    newCourse.save();
+    newCourse.updateProf("Doug Benson");
+    assertEquals("Doug Benson", newCourse.getProfessor());
+  }
 //   @Test
 //   public void addTask_addsTaskToCategory() {
 //     Category myCategory = new Category("Household chores");
@@ -73,17 +80,4 @@ public class CourseTest {
 //     myCategory.delete();
 //     assertEquals(myTask.getCategories().size(), 0);
 // }
-
-
-  // @Test
-  // public void getTasks_retrievesALlTasksFromDatabase_tasksList() {
-  //   Category myCategory = new Category("Household chores");
-  //   myCategory.save();
-  //   Task firstTask = new Task("Mow the lawn", myCategory.getId());
-  //   firstTask.save();
-  //   Task secondTask = new Task("Do the dishes", myCategory.getId());
-  //   secondTask.save();
-  //   Task[] tasks = new Task[] { firstTask, secondTask };
-  //   assertTrue(myCategory.getTasks().containsAll(Arrays.asList(tasks)));
-  // }
 }

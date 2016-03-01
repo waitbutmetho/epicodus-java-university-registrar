@@ -34,4 +34,12 @@ public class StudentTest {
     Student savedStudent = Student.find(myStudent.getId());
     assertTrue(myStudent.equals(savedStudent));
   }
+
+  @Test
+  public void updateDepartment_replacesOldValueAndReturnsNewValue() {
+    Student newStudent = new Student("Roach", "Herbology");
+    newStudent.save();
+    newStudent.updateDepartment("industrial agriculture");
+    assertEquals("industrial agriculture", newStudent.getDepartment());
+  }
 }
